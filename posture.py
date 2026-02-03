@@ -34,7 +34,7 @@ def vertical_point(p, offset=100):
 model = YOLO("yolov8n-pose.pt")  # lightweight, fast
 
 # ============================= MAIN ============================= #
-cap = cv2.VideoCapture("input.mp4")
+cap = cv2.VideoCapture("input1.mp4")
 fps = cap.get(cv2.CAP_PROP_FPS)
 bad_frames = 0
 good_frames = 0
@@ -120,4 +120,5 @@ while cap.isOpened():
 
 cap.release()
 cv2.destroyAllWindows()
+
 
