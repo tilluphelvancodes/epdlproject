@@ -1,0 +1,53 @@
+F. Pizza Delivery
+time limit per test
+2 seconds
+memory limit per test
+256 megabytes
+
+Courier YF has earned the title of the best pizza delivery person GR. The manager does not like him, so he decided to give him a very difficult task. The manager provided him with n
+coordinates of houses (xi,yi)
+
+where he needs to deliver the pizza. He will deliver the pizza in the following way:
+
+    GR pizza is prepared at the point (Ax,Ay
+
+) and YF starts the delivery from this point.
+To deliver the pizza, he can move from the point (x,y
+) to three points (x+1,y), (x,y+1), (x,y−1
+).
+After he has delivered all the pizzas, he returns home to the point (Bx,By
+
+    ). 
+
+Each move takes him exactly one second, and handing over the pizza to the customer takes 0
+
+seconds. The manager wants the delivery to be as fast as possible. You need to find the minimum delivery time for all GR pizzas. It is guaranteed that delivery is always possible.
+Input
+
+Each test consists of several test cases. The first line contains one integer t
+(1≤t≤104
+
+) — the number of test cases. The description of the test cases follows.
+
+The first line of each test case contains five integers n
+, Ax, Ay, Bx, By (1≤n≤2⋅105, 1≤Ax,Ay,Bx,By≤109
+
+) — the number of houses for delivery, as well as the coordinates of the start and end points.
+
+The second line of each test case contains n
+integers x1,x2,…,xn (Ax<xi<Bx
+
+).
+
+The third line of each test case contains n
+integers y1,y2,…,yn (1≤yi≤109
+
+).
+
+It is guaranteed that the sum of the values of n
+across all test cases does not exceed 2⋅105
+
+.
+Output
+
+For each test case, output a single integer on a separate line — the minimum time required for pizza delivery.
