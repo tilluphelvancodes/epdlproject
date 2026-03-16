@@ -1,0 +1,371 @@
+/* 1. Global Reset & Variables */
+:root {
+    --primary-color: #d4ff00; /* Neon Lime from first image */
+    --text-white: #ffffff;
+    --bg-dark: #000000;
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+/* 2. Background & Overlay Setup */
+.hero-container {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    padding: 2rem 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bg-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Replace 'download (2).jpg' with your actual filename */
+    background: url('download (2).jpg') no-repeat center center/cover;
+    z-index: -2;
+    transition: transform 0.1s ease-out; /* For JS parallax */
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(0,0,0,0.4) 0%, 
+        rgba(0,0,0,0.7) 100%
+    );
+    z-index: -1;
+}
+
+/* 3. Updated Navbar & Login */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-white);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.login {
+    color: var(--text-white); /* Removed default blue */
+    text-decoration: none;    /* Removed underline */
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-right: 2.5rem;      /* Added space between login and button */
+    transition: opacity 0.3s;
+}
+
+.login:hover {
+    opacity: 0.7;
+}
+
+/* 4. Button Styles & "Bulge" Effect */
+button {
+    cursor: pointer;
+    border: none;
+    font-weight: 700;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
+}
+
+/* The Bulge Effect */
+.btn-outline:hover, 
+.btn-primary:hover,
+.btn-secondary:hover {
+    transform: scale(1.08); /* Bulges out smoothly */
+}
+
+.btn-outline {
+    background: #ffffff;
+    color: #000000;
+    padding: 0.7rem 1.8rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #000000;
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+/* 5. Main Hero Content */
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5rem;
+    margin-top: 2rem;
+}
+
+h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 1.05;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    letter-spacing: -1px;
+}
+
+.cta-group {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.arrow {
+    font-size: 1.2rem;
+}
+
+/* 6. Bottom Grid Cards */
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr 1fr;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+.card {
+    padding: 2rem;
+    border-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.glass {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+}
+
+.user-icons {
+    display: flex;
+    align-items: center;
+    gap: -10px; /* Overlap effect */
+    margin-bottom: 1rem;
+}
+
+.user-icons img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #222;
+    margin-right: -12px;
+}
+
+.user-icons .count {
+    margin-left: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.small-text {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+.info-card p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+}
+
+.highlight-card {
+    background: var(--primary-color);
+    color: #000000;
+    position: relative;
+    overflow: hidden;
+}
+
+.highlight-card h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.mini-fab {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #000000;
+    color: #ffffff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* 7. Responsive Adjustments */
+@media (max-width: 1024px) {
+    .bottom-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .nav-links { display: none; }
+    .bottom-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 3.5rem; }
+    .hero-container { padding: 1.5rem; }
+    .nav-right { width: 100%; justify-content: flex-end; }
+}
+/* Modal Container (Hidden by default) */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px); /* The background blur */
+    display: none; /* Controlled by JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* The Login Box */
+.login-box {
+    width: 400px;
+    padding: 3rem;
+    border-radius: 30px;
+    text-align: center;
+    position: relative;
+    border: 1px solid var(--glass-border);
+}
+
+.login-box h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.neon-text {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(212, 255, 0, 0.5);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px; right: 25px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: rgba(255,255,255,0.5);
+}
+
+/* Form Styling */
+.input-group {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-color);
+}
+
+.modal-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.signup-text {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.signup-text a { color: var(--primary-color); text-decoration: none; }
+
+/* Enable the Smooth Reveal from Section 2 of your JS */
+h1, .cta-group, .card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
